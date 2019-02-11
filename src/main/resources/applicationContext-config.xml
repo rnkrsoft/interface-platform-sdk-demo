@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="dynamicPropertyPlaceholderConfigurer" class="com.rnkrsoft.framework.config.spring.DynamicConfigSourceConfigurer">
+        <!--主机IP地址或者域名-->
+        <property name="host" value="localhost"/>
+        <!--主机服务端口-->
+        <property name="port" value="80"/>
+        <!--当前项目组织编号-->
+        <property name="groupId" value="com.zxevpop.gateway"/>
+        <!--当前项目组件编号-->
+        <property name="artifactId" value="evpop-gateway-app"/>
+        <!--当前项目版本号-->
+        <property name="version" value="3.0.0"/>
+        <!--当前项目所在环境-->
+        <property name="env" value="dev" />
+        <!--客户端初始化后拉取配置的延时时间（秒）-->
+        <property name="fetchDelaySeconds" value="5"/>
+        <!--客户端拉取配置的间隔（秒）-->
+        <property name="fetchIntervalSeconds" value="5"/>
+        <!--连接器类型-->
+        <property name="connectorType" value="HTTP"/>
+        <!--配置模式，AUTO自动模式，先从本地加载，然后使用服务器的进行覆盖;LOCAL从本地配置文件加载，REMOTE从服务器加载-->
+        <property name="runtimeMode" value="LOCAL"/>
+        <!--本地配置文件-->
+        <property name="locations">
+            <array>
+                <!--数据库配置-->
+                <value>classpath*:jdbc.properties</value>
+                <!--缓存-->
+                <value>classpath*:cache.properties</value>
+            </array>
+        </property>
+        <!--本地配置文件根目录-->
+        <property name="localFileHome" value="."/>
+        <!--远程配置缓存根目录-->
+        <property name="workHome" value="./cache"/>
+    </bean>
+</beans>
